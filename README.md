@@ -9,8 +9,8 @@ The purpose of this project is to get a basic project up and running using a mix
 
 ## Part 1: React Wizard
 Create a wizard using React!
-- [ ] At least three steps
-- [ ] Navigate using 'Next' and 'Previous' buttons
+- [x] At least three steps
+- [x] Navigate using 'Next' and 'Previous' buttons
 - [ ] Maintain states between navigations
 - [ ] Generalize the component so that any component can act as a 'step'
 
