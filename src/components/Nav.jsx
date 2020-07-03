@@ -5,6 +5,21 @@ class Nav extends Component {
 	render() {
 		//console.log(this.props);
 		const { numPages, current } = this.props;
+
+		//Generate the navigation / position stuff on the bottom of the page
+		let navIndicators = [];
+		for (let i = 0; i < numPages; i++) {
+			let className = 'navIndicator' + i === current ? "current" : "";
+			let elem;
+			if (i === 0) {
+				elem = <span key={i} className={className}>Intro</span>;
+			} else if (i === numPages - 1) {
+				elem = <span key={i} className={className}>Summary</span>;
+			} else {
+				elem = <span key={i} className={className}>{i}</span>;
+			}
+			navIndicators.push(elem);
+		}
 		return (
 			<nav>
 				<h1>Nav</h1>
@@ -17,7 +32,7 @@ class Nav extends Component {
 				>Backwards!</button>
 
 				{/* Generate the positions on the bottom of the page here */}
-				<p>Number of form elements: {this.props.numPages}</p>
+				{ navIndicators }	
 
 				{/*Navigate forwards*/}
 				<button 
