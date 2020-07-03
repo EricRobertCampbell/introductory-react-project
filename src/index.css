@@ -12,8 +12,12 @@ code {
     monospace;
 }
 
+h1 {
+	text-align: center;
+}
+
 #root {
-	border: 1px solid black;
+	/*border: 1px solid black; */
 }
 
 nav {
@@ -50,4 +54,13 @@ nav button {
 nav button, nav span {
 	font-size: 200%;
 	border-radius: calc(var(--span-dim) / 10);
+}
+
+span.response {
+	color: red;
+}
+
+div.summaryResults {
+	display: inline-block;
+	text-align: left;
 }
