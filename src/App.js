@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 //Get custom components
@@ -74,8 +73,6 @@ class App extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<h1>App</h1>
-
 				{/*The current page to display*/}
 				{this.displayCurrentPage()}
 
