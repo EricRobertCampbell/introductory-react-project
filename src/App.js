@@ -50,6 +50,7 @@ class App extends Component {
 				<Form 
 					currentQuestion={this.state.info[this.state.current - 1]} 
 					handleChange={(e) => this.handleChange(e)} 
+					handleSubmit={(e) => this.handleSubmit(e)} 
 				/>
 			);
 		}
@@ -72,6 +73,11 @@ class App extends Component {
 		const copy = this.state.info.map(elem => ({ ...elem }));
 		copy[this.state.current - 1].response = e.target.value;
 		this.setState({info: copy});
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+		this.setState({current: this.state.current + 1});
 	}
 
 	render() {

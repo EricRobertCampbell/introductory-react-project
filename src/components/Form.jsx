@@ -12,6 +12,7 @@ class Form extends Component {
 						<input 
 							value={response}
 							onChange={this.props.handleChange}
+							onSubmit={this.props.handleSubmit}
 							type="text" 
 							key={title} 
 						/>
