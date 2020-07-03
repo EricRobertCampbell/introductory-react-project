@@ -1,8 +1,13 @@
 :root {
-	--bg-colour: white;
+	--bg-colour: green;
 }
 body {
-	bg-color: var(--bg-colour);
+
+	/* Photo by Franccesco Gallarotti on Unsplash */
+	background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('plant-background.jpg');
+	background-size: cover;
+
+	min-height: 100vh;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
