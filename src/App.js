@@ -10,20 +10,25 @@ class App extends Component {
 	state = {
 		info: [
 			{
-				title: 'test1',
-				question: 'Test?1',
-				response: 'Test',
-			},
-			{
-				title: 'test2',
-				question: 'Test?2',
+				title: 'Seed Company',
+				question: 'From which company did you purchase your seeds?',
 				response: '',
 			},
 			{
-				title: 'test3',
-				question: 'Test?3',
+				title: 'Type',
+				question: 'What type / species of seed did you purchase?',
 				response: '',
-			}
+			},
+			{
+				title: 'Variety',
+				question: 'What variety of seed did you purchase?',
+				response: '',
+			},
+			{
+				title: 'Days to Germination',
+				question: 'How many days to germination?',
+				response: '',
+			},
 		],
 		current: 0, //current 'page' to view (intro and summary count)
 

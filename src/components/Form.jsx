@@ -8,7 +8,7 @@ class Form extends Component {
 				<h1>{title}</h1>
 
 				<form onSubmit={this.props.handleSubmit} style={{textAlign: 'center'}}>
-					<label>{question}
+					<label>{question + "   "}
 						<input 
 							value={response}
 							onChange={this.props.handleChange}

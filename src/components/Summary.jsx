@@ -10,7 +10,7 @@ class Summary extends Component {
 
 				<div className="summaryResults">
 				{
-					this.props.info.map( q => <p>{q.question}: <span className="response">{q.response}</span></p>) 
+					this.props.info.map( q => <p>{q.question}: <mark className="response">{q.response}</mark></p>) 
 				}
 				</div>
 			</div>
