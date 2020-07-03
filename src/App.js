@@ -12,50 +12,63 @@ class App extends Component {
 			{
 				name: 'test1',
 				question: 'Test?1',
-				response: '1',
+				response: 'Test',
 			},
 			{
 				name: 'test2',
 				question: 'Test?2',
-				response: '2',
+				response: '',
 			},
 			{
 				name: 'test3',
 				question: 'Test?3',
-				response: '3',
+				response: '',
 			}
 		],
 		current: 0, //current 'page' to view (intro and summary count)
 
 		intro: <h1>Intro</h1>,
 		summary: <h1>Summary</h1>,
-		pages: [], //all of the pages, including the intro and summary
+
+		currentInput: '', //only here for testing
 	};
 
-	constructor() {
-		super();
-
-		const pages = [];
-
-		pages.push(this.state.intro);
-
-		for (let i = 0; i < this.state.info.length; i++) {
-			const currentQuestion = this.state.info[i];
-			pages.push(
-				<p>{`name: ${currentQuestion.name}, question: ${currentQuestion.question}, response: ${currentQuestion.response}`}</p>
+	displayCurrentPage() {
+		if (this.state.current === 0) {
+			return this.state.intro;
+		} else if (this.state.current === this.state.info.length + 1) {
+			return this.state.summary;
+		} else {
+			return (
+				<Form 
+					currentQuestion={this.state.info[this.state.current - 1]} 
+					currentInput={this.state.currentInput}
+					handleChange={(e) => this.handleChange(e)} 
+				/>
 			);
 		}
-		pages.push(this.state.summary);
-
-		this.state.pages = pages;
 	}
 
+	/**
+	 * Used to increment and decrement that current page
+	 */
 	increment() {
 		this.setState({current: this.state.current + 1});
 	}
-
 	decrement() {
 		this.setState({current: this.state.current - 1});
+	}
+
+	/**
+	 * Used to handle when things are input into Forms
+	 */
+	handleChange(e) {
+		this.setState({currentInput: e.target.value});
+		console.log(`in handleChange. currentInput is ${this.state.currentInput}`);
+
+		const copy = this.state.info.map(elem => ({ ...elem }));
+		copy[this.state.current - 1].response = e.target.value;
+		this.setState({info: copy});
 	}
 
 	render() {
@@ -63,13 +76,14 @@ class App extends Component {
 			<React.Fragment>
 				<h1>App</h1>
 
-				{this.state.pages[this.state.current]}
+				{/*The current page to display*/}
+				{this.displayCurrentPage()}
 
 				<Nav 
 					increment={() => this.increment()}
 					decrement={() => this.decrement()}
 					current={this.state.current}
-					numPages={this.state.pages.length}
+					numPages={this.state.info.length + 2}
 				/>
 			</React.Fragment>
 		);

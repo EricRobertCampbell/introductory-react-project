@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import NavButton from './NavButton';
 
 class Nav extends Component {
-	state = {
-	}
-
 	render() {
-		console.log(this.props);
+		//console.log(this.props);
 		const { numPages, current } = this.props;
 		return (
 			<nav>
@@ -18,8 +15,9 @@ class Nav extends Component {
 					onClick={this.props.decrement}
 					disabled={current === 0 ? true : false}
 				>Backwards!</button>
+
 				{/* Generate the positions on the bottom of the page here */}
-				<p>Number of form elements: {this.props.numForms}</p>
+				<p>Number of form elements: {this.props.numPages}</p>
 
 				{/*Navigate forwards*/}
 				<button 
