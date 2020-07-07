@@ -8,6 +8,18 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <App>
+		{(props) => {<p>First</p>}}
+		{(props) => {<p>First</p>}}
+		{(props) => {<p>First</p>}}
+
+
+	{ (props) => {
+		[
+		<step1 props.thisThingICareAbout>
+		<step2 >
+		<step3 >
+		].filter(theCurrentOne)
+	}
 	</App>
   </React.StrictMode>,
   document.getElementById('root')

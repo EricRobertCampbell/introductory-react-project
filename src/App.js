@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 //Get custom components
-import Form from './components/Form.jsx';
+import MyForm from './components/MyForm.jsx';
 import Nav from './components/Nav.jsx';
 import Summary from './components/Summary.jsx';
 
@@ -10,21 +10,25 @@ class App extends Component {
 	state = {
 		info: [
 			{
+				field: 'company',
 				title: 'Seed Company',
 				question: 'From which company did you purchase your seeds?',
 				response: '',
 			},
 			{
+				field: 'type',
 				title: 'Type',
 				question: 'What type / species of seed did you purchase?',
 				response: '',
 			},
 			{
+				field: 'variety',
 				title: 'Variety',
 				question: 'What variety of seed did you purchase?',
 				response: '',
 			},
 			{
+				field: 'germination',
 				title: 'Days to Germination',
 				question: 'How many days to germination?',
 				response: '',
@@ -46,11 +50,11 @@ class App extends Component {
 		} else if (this.state.current === this.state.info.length + 1) {
 			return <Summary info={this.state.info} />;
 		} else {
+					{/*handleSubmit={(e) => this.handleSubmit(e)} */}
 			return (
-				<Form 
+				<MyForm 
 					currentQuestion={this.state.info[this.state.current - 1]} 
 					handleChange={(e) => this.handleChange(e)} 
-					handleSubmit={(e) => this.handleSubmit(e)} 
 				/>
 			);
 		}
@@ -67,12 +71,16 @@ class App extends Component {
 	}
 
 	/**
-	 * Used to handle when things are input into Forms
+	 * Used to handle when things are input into MyForms
 	 */
 	handleChange(e) {
+		/*
 		const copy = this.state.info.map(elem => ({ ...elem }));
 		copy[this.state.current - 1].response = e.target.value;
 		this.setState({info: copy});
+		*/
+		/* Each for will only have one value - this, on change we want to get the single value contained in the values property of the formState */
+		
 	}
 
 	handleSubmit(e) {
@@ -81,11 +89,16 @@ class App extends Component {
 	}
 
 	render() {
+		children[theCurrentOne](stuff I want to pass);
+
+		const list_of_steps = [
+		];
 		return (
 			<>
+			{this.props.children[this.state]}
 			{/* The current page to display */}
 				{/*The current page to display*/}
-				{this.displayCurrentPage()}
+				{/*this.displayCurrentPage()*/}
 
 			{/* The navigation component */}
 				<Nav 
