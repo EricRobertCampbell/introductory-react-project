@@ -57,7 +57,7 @@ class App extends Component {
 	}
 
 	/**
-	 * Used to increment and decrement that current page
+	 * Used to increment and decrement the current page
 	 */
 	increment() {
 		this.setState({current: this.state.current + 1});
@@ -82,17 +82,19 @@ class App extends Component {
 
 	render() {
 		return (
-			<React.Fragment>
+			<>
+			{/* The current page to display */}
 				{/*The current page to display*/}
 				{this.displayCurrentPage()}
 
+			{/* The navigation component */}
 				<Nav 
 					increment={() => this.increment()}
 					decrement={() => this.decrement()}
 					current={this.state.current}
 					numPages={this.state.info.length + 2}
 				/>
-			</React.Fragment>
+			</>
 		);
 	}
 }

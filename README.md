@@ -12,7 +12,6 @@ Create a wizard using React!
 - [x] At least three steps
 - [x] Navigate using 'Next' and 'Previous' buttons
 - [x] Maintain states between navigations
-- [x] Generalize the component so that any component can act as a 'step'
 
 ## Part 2: Informed and validation
 - [ ] Replace each Form element with an Informed Form	
@@ -34,5 +33,6 @@ Create a wizard using React!
 - [ ] Replace some of your components with Material-UI components
 
 ## General To-Do
+- [ ] Generalize the component so that any component can act as a 'step'
 - [ ] Make it so that focus is automatically moved to the input on each new Form
 - [ ] Clean up the aesthetics

@@ -55,11 +55,13 @@ nav span.current {
 
 nav button {
 	width: calc(var(--span-dim) / 2);
+
 }
 
 nav button, nav span {
 	font-size: 200%;
 	border-radius: calc(var(--span-dim) / 10);
+	padding: 3px;
 }
 
 mark.response {
