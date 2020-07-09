@@ -14,10 +14,10 @@ Create a wizard using React!
 - [x] Maintain states between navigations
 
 ## Part 2: Informed and validation
-- [ ] Replace each Form element with an Informed Form	
-	- [ ] EITHER use the base Informed fields OR use custom fields that have been linked into the Informed Form
-- [ ] Add validation for a field.
-	- [ ] Use Informed's "validation" option (e.g. ensure that a phone number is formatted properly or that a number is above a certain value)
+- [x] Replace each Form element with an Informed Form	
+	- [x] EITHER use the base Informed fields OR use custom fields that have been linked into the Informed Form
+- [x] Add validation for a field.
+	- [x] Use Informed's "validation" option (e.g. ensure that a phone number is formatted properly or that a number is above a certain value)
 
 ## Part 3: Redux
 - [ ] Add Redux to your wizard
