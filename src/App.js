@@ -80,7 +80,7 @@ const App = () => {
       onChange={(formState) => handleChange(formState)}
       onSubmit={(formState) => handleSubmit(formState)}
       title="Variety"
-      question={`Which variety of did you buy?`}
+      question={`Which variety of seed did you buy?`}
       field="variety"
       initialValues={data[current]}
       next={increment}
@@ -91,7 +91,7 @@ const App = () => {
       onChange={(formState) => handleChange(formState)}
       onSubmit={(formState) => handleSubmit(formState)}
       title="Germination"
-      question="How long from the initial planting to germination?"
+      question="How may days from the initial planting to germination?"
       field="germination"
       initialValues={data[current]}
       validate={validateGermination}
