@@ -1,74 +1,80 @@
 :root {
-	--bg-colour: green;
+  --bg-colour: green;
 }
 body {
+  /* Photo by Franccesco Gallarotti on Unsplash */
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("./pictures/plant-background.jpg");
+  background-size: cover;
 
-	/* Photo by Franccesco Gallarotti on Unsplash */
-	background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('plant-background.jpg');
-	background-size: cover;
-
-	min-height: 100vh;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 h1 {
-	text-align: center;
+  text-align: center;
 }
 
 #root {
-	/*border: 1px solid black; */
+  /*border: 1px solid black; */
 }
 
 nav {
-	--span-dim: 6em; /*The dimension of the navigation spans  */
+  --span-dim: 6em; /*The dimension of the navigation spans  */
 }
 
-
 nav {
-	position: fixed;
-	bottom: 5px;
-	left: 2.5vw;
-	width: 95vw;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
+  position: fixed;
+  bottom: 5px;
+  left: 2.5vw;
+  width: 95vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 nav span {
-	text-align: center;
-	vertical-align: center;
-	display: inline-block;
-	width: var(--span-dim);
-	border: 3px solid var(--bgb-color);
+  text-align: center;
+  vertical-align: center;
+  display: inline-block;
+  border: 3px solid var(--bg-color);
+  border-radius: 50%;
 }
 
-nav span.current {
-	border: 3px solid blue;
+nav span.outer {
+  width: var(--span-dim);
+  height: var(--span-dim);
 }
 
-nav button {
-	width: calc(var(--span-dim) / 2);
-
+nav span span {
+  background-color: black;
+  width: calc(var(--span-dim) / 6);
+  height: calc(var(--span-dim) / 6);
 }
 
-nav button, nav span {
-	font-size: 200%;
-	border-radius: calc(var(--span-dim) / 10);
-	padding: 3px;
+nav span span.initial {
+  background-color: blue;
 }
 
-mark.response {
-	color: red;
+nav span span.final {
+  background-color: red;
+}
+
+nav > span.current {
+  border: 3px solid blue;
 }
 
 div.summaryResults {
-	display: inline-block;
-	text-align: left;
+  display: inline-block;
+  text-align: left;
 }

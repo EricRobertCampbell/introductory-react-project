@@ -1,45 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Nav extends Component {
-	render() {
-		//console.log(this.props);
-		const { numPages, current } = this.props;
+  render() {
+    //console.log(this.props);
+    const { numPages, current } = this.props;
 
-		//Generate the navigation / position stuff on the bottom of the page
-		let navIndicators = [];
-		for (let i = 0; i < numPages; i++) {
-			let className = 'navIndicator' + (i === current ? " current" : "");
-			let elem;
-			if (i === 0) {
-				elem = <span key={i} className={className}>Intro</span>;
-			} else if (i === numPages - 1) {
-				elem = <span key={i} className={className}>Summary</span>;
-			} else {
-				elem = <span key={i} className={className}>{i}</span>;
-			}
-			navIndicators.push(elem);
-		}
-		return (
-			<nav>
-				{/*Navigate Backwards*/}
-				<button 
-					type="button" 
-					onClick={this.props.decrement}
-					disabled={current === 0 ? true : false}
-				>&larr;</button>
+    //Generate the navigation / position stuff on the bottom of the page
+    let navIndicators = [];
+    for (let i = 0; i < numPages; i++) {
+      let outerClassName =
+        "outer" +
+        (i === current ? " current" : null) +
+        (i === 0 ? " initial" : "") +
+        (i === numPages - 1 ? " final" : "");
+      let innerClassName =
+        "inner" +
+        (i === current ? " current" : null) +
+        (i === 0 ? " initial" : "") +
+        (i === numPages - 1 ? " final" : "");
+      let elem = (
+        <span key={i} className={outerClassName}>
+          <span className={innerClassName}></span>
+        </span>
+      );
+      navIndicators.push(elem);
+    }
 
-				{/* Generate the positions on the bottom of the page here */}
-				{ navIndicators }	
-
-				{/*Navigate forwards*/}
-				<button 
-					type="button" 
-					onClick={this.props.increment}
-					disabled={current === numPages - 1 ? true : false}
-				>&rarr;</button>
-			</nav>
-		);
-	}
+    return (
+      <nav>
+        {/* Generate the positions on the bottom of the page here */}
+        {navIndicators}
+      </nav>
+    );
+  }
 }
 
 export default Nav;

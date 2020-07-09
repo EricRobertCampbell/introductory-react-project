@@ -1,115 +1,113 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 //Get custom components
-import MyForm from './components/MyForm.jsx';
-import Nav from './components/Nav.jsx';
-import Summary from './components/Summary.jsx';
+import { BasicForm, ValidatedForm } from "./components/Forms.jsx";
+import Nav from "./components/Nav.jsx";
+import Intro from "./components/Intro.jsx";
+import Summary from "./components/Summary.jsx";
 
-class App extends Component {
-	state = {
-		info: [
-			{
-				field: 'company',
-				title: 'Seed Company',
-				question: 'From which company did you purchase your seeds?',
-				response: '',
-			},
-			{
-				field: 'type',
-				title: 'Type',
-				question: 'What type / species of seed did you purchase?',
-				response: '',
-			},
-			{
-				field: 'variety',
-				title: 'Variety',
-				question: 'What variety of seed did you purchase?',
-				response: '',
-			},
-			{
-				field: 'germination',
-				title: 'Days to Germination',
-				question: 'How many days to germination?',
-				response: '',
-			},
-		],
-		current: 0, //current 'page' to view (intro and summary count)
+const App = () => {
+  /* State variables */
+  const [data, changeData] = useState([]); //current format for data: an array corresponding to the form number, and then the values in that (corresponds to formState.values)
+  const [current, changeCurrent] = useState(0);
 
-		intro: (
-			<div stye={{textAlign: 'center'}}>
-				<h1>Introduction</h1>
+  /**
+   * Used to increment and decrement the current page
+   */
+  function increment() {
+    changeCurrent(current + 1);
+  }
+  function decrement() {
+    changeCurrent(current - 1);
+  }
 
-				<p style={{textAlign: 'center'}}>Use the form to enter your responses. They will be saved automatically, but will be lost if you navigate away from the page entirely.</p>
-			</div> ),
-	};
+  /**
+   * Used to handle when things are input into forms
+   */
+  function handleChange(formState) {
+    const { values } = formState;
+    const copy = data.map((elem) => ({ ...elem }));
+    copy[current] = { ...values };
+    changeData(copy);
+  }
 
-	displayCurrentPage() {
-		if (this.state.current === 0) {
-			return this.state.intro;
-		} else if (this.state.current === this.state.info.length + 1) {
-			return <Summary info={this.state.info} />;
-		} else {
-					{/*handleSubmit={(e) => this.handleSubmit(e)} */}
-			return (
-				<MyForm 
-					currentQuestion={this.state.info[this.state.current - 1]} 
-					handleChange={(e) => this.handleChange(e)} 
-				/>
-			);
-		}
-	}
+  function handleSubmit(formState) {
+    increment();
+  }
 
-	/**
-	 * Used to increment and decrement the current page
-	 */
-	increment() {
-		this.setState({current: this.state.current + 1});
-	}
-	decrement() {
-		this.setState({current: this.state.current - 1});
-	}
+  const validateGermination = (value) => {
+    let errorString;
+    if (Number.isNaN(Number(value)) === true) {
+      errorString = "Your entry must be a valid number.";
+    } else if (value.includes(".")) {
+      errorString = "Your number cannot be a decimal (include a '.').";
+    } else if (value.includes("-")) {
+      errorString = "Your number cannot be negative (include a '-').";
+    } else if (value === "0") {
+      errorString = "Your number must be greater than zero.";
+    }
 
-	/**
-	 * Used to handle when things are input into MyForms
-	 */
-	handleChange(e) {
-		/*
-		const copy = this.state.info.map(elem => ({ ...elem }));
-		copy[this.state.current - 1].response = e.target.value;
-		this.setState({info: copy});
-		*/
-		/* Each for will only have one value - this, on change we want to get the single value contained in the values property of the formState */
-		
-	}
+    return errorString;
+  };
 
-	handleSubmit(e) {
-		e.preventDefault();
-		this.setState({current: this.state.current + 1});
-	}
+  const pages = [
+    <Intro next={increment} />,
+    <BasicForm
+      key="company"
+      onChange={(formState) => handleChange(formState)}
+      onSubmit={(formState) => handleSubmit(formState)}
+      title="Company"
+      question="Which company did you purchase the seeds from?"
+      field="company"
+      initialValues={data[current]}
+      next={increment}
+      last={decrement}
+    />,
+    <BasicForm
+      key="species"
+      onChange={(formState) => handleChange(formState)}
+      onSubmit={(formState) => handleSubmit(formState)}
+      title="Species"
+      question="Which species of seed did you buy?"
+      field="species"
+      initialValues={data[current]}
+      next={increment}
+      last={decrement}
+    />,
+    <BasicForm
+      key="variety"
+      onChange={(formState) => handleChange(formState)}
+      onSubmit={(formState) => handleSubmit(formState)}
+      title="Variety"
+      question={`Which variety of did you buy?`}
+      field="variety"
+      initialValues={data[current]}
+      next={increment}
+      last={decrement}
+    />,
+    <ValidatedForm
+      key="germination"
+      onChange={(formState) => handleChange(formState)}
+      onSubmit={(formState) => handleSubmit(formState)}
+      title="Germination"
+      question="How long from the initial planting to germination?"
+      field="germination"
+      initialValues={data[current]}
+      validate={validateGermination}
+      next={increment}
+      last={decrement}
+    />,
+    <Summary key="summary" data={data} back={decrement} />,
+  ];
+  return (
+    <>
+      {/* Render the current child of App */}
+      {pages[current]}
 
-	render() {
-		children[theCurrentOne](stuff I want to pass);
-
-		const list_of_steps = [
-		];
-		return (
-			<>
-			{this.props.children[this.state]}
-			{/* The current page to display */}
-				{/*The current page to display*/}
-				{/*this.displayCurrentPage()*/}
-
-			{/* The navigation component */}
-				<Nav 
-					increment={() => this.increment()}
-					decrement={() => this.decrement()}
-					current={this.state.current}
-					numPages={this.state.info.length + 2}
-				/>
-			</>
-		);
-	}
-}
+      <Nav current={current} numPages={pages.length} />
+    </>
+  );
+};
 
 export default App;
