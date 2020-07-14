@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 
 //Get custom components
@@ -7,32 +7,18 @@ import Nav from "./components/Nav.jsx";
 import Intro from "./components/Intro.jsx";
 import Summary from "./components/Summary.jsx";
 
-const App = () => {
-  /* State variables */
-  const [data, changeData] = useState([]); //current format for data: an array corresponding to the form number, and then the values in that (corresponds to formState.values)
-  const [current, changeCurrent] = useState(0);
-
-  /**
-   * Used to increment and decrement the current page
-   */
-  function increment() {
-    changeCurrent(current + 1);
-  }
-  function decrement() {
-    changeCurrent(current - 1);
-  }
-
+const App = ({ data, current, increment, decrement, handleData }) => {
   /**
    * Used to handle when things are input into forms
    */
   function handleChange(formState) {
     const { values } = formState;
-    const copy = data.map((elem) => ({ ...elem }));
-    copy[current] = { ...values };
-    changeData(copy);
+    handleData(values);
   }
 
   function handleSubmit(formState) {
+    console.log("in handleSubmit. formState: ", formState);
+    handleData(formState);
     increment();
   }
 
@@ -60,7 +46,7 @@ const App = () => {
       title="Company"
       question="Which company did you purchase the seeds from?"
       field="company"
-      initialValues={data[current]}
+      initialValues={data}
       next={increment}
       last={decrement}
     />,
@@ -71,7 +57,7 @@ const App = () => {
       title="Species"
       question="Which species of seed did you buy?"
       field="species"
-      initialValues={data[current]}
+      initialValues={data}
       next={increment}
       last={decrement}
     />,
@@ -82,7 +68,7 @@ const App = () => {
       title="Variety"
       question={`Which variety of seed did you buy?`}
       field="variety"
-      initialValues={data[current]}
+      initialValues={data}
       next={increment}
       last={decrement}
     />,
@@ -93,7 +79,7 @@ const App = () => {
       title="Germination"
       question="How may days from the initial planting to germination?"
       field="germination"
-      initialValues={data[current]}
+      initialValues={data}
       validate={validateGermination}
       next={increment}
       last={decrement}

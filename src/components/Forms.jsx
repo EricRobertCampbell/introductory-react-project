@@ -23,8 +23,7 @@ const BasicForm = (props) => {
         initialValues={initialValues}
       >
         <label>
-          {question}
-          <Text field={field} required={true} />
+          {question} <Text field={field} required={true} />
         </label>
         <br />
         <p>{/*This is here only for congruence with ValidatedForm */}</p>
@@ -79,7 +78,7 @@ const ValidatedForm = (props) => {
         initialValues={initialValues}
       >
         <label>
-          {question}
+          {question}{" "}
           <ShowErrorField
             field={field}
             initialValues={initialValues}

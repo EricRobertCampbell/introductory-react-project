@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Summary = (props) => {
+const BaseSummary = (props) => {
+  const { company, species, variety, germination } = props.data;
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Summary</h1>
@@ -11,7 +13,10 @@ const Summary = (props) => {
       </p>
 
       <div className="summaryResults">
-        <p>{JSON.stringify(props.data)}</p>
+        <p>Company: {company}</p>
+        <p>Species: {species}</p>
+        <p>Variety: {variety}</p>
+        <p>Days to Germination: {germination}</p>
       </div>
       <div style={{ textAlign: "center" }}>
         <button type="button" onClick={props.back}>
@@ -21,5 +26,12 @@ const Summary = (props) => {
     </div>
   );
 };
+
+const Summary = connect(
+  (state) => ({
+    data: state.data,
+  }),
+  null
+)(BaseSummary);
 
 export default Summary;
