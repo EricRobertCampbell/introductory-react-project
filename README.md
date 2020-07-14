@@ -20,9 +20,9 @@ Create a wizard using React!
 	- [x] Use Informed's "validation" option (e.g. ensure that a phone number is formatted properly or that a number is above a certain value)
 
 ## Part 3: Redux
-- [ ] Add Redux to your wizard
-	- [ ] Move the state into Redux
-	- [ ] Store the state so that when you navigate between different steps, the state is preserved
+- [x] Add Redux to your wizard
+	- [x] Move the state into Redux
+	- [x] Store the state so that when you navigate between different steps, the state is preserved
 
 (It will likely be helpful to use Informed's "FormState" to dehydrate and rehydrate the forms)
 
